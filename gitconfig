@@ -1,0 +1,50 @@
+[alias]
+        # submodule
+        su = submodule update --init --recursive
+
+        # files
+        s = status
+        a = "!git add $(git status -s | fzf -m --preview \"git diff {2}\" | awk '{print $2}')"
+
+        # branches
+        f = fetch --all
+        br = branch -vv
+        ck = checkout
+        bselect = "!f() { \
+        }; f"
+        # prune
+        clean = remote prune origin
+
+        # safety force push
+        fp = push --force-with-lease
+
+        # reset
+        rh = reset --hard
+
+        # logs
+        tree = log --all --graph --decorate --oneline
+        lg = log --graph --decorate --oneline
+        history = log --stat --format=short --follow
+
+        sync-force = !git branch | xargs git branch -D
+        cp = cherry-pick
+        tags = "tag --list --sort=-v:refname"
+
+        alias = "!git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/'"
+
+[user]
+        email = high0408@gmail.com
+        name = Youngsang Kwon
+
+[push]
+        default = current
+
+[color]
+        ui = auto
+        branch = auto
+        status = auto
+
+[commit]
+        verbose = true
+[credential]
+        helper = osxkeychain
